@@ -1,0 +1,14 @@
+.mr-auto {
+  margin-right: 0 !important;
+}
+
+#basic-navbar-nav {
+  justify-content: flex-end;
+}
+
+.navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  padding: 1rem 5% 1rem 5%;
+}
