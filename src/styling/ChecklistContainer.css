@@ -1,0 +1,60 @@
+.main-container:hover {
+  cursor: pointer;
+}
+
+.main-container {
+  border-style: solid;
+  height: 200px;
+  width: 400px;
+  padding: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+}
+
+.emoticon {
+  margin: 1em;
+  width: 100px;
+  height: 100px;
+}
+
+.msgKr {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.msgEn {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.msgcontainer {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width: 450px) {
+  .msgKr {
+    font-size: 1rem;
+  }
+  
+  .msgEn {
+    font-size: 1rem;
+  }
+
+  .emoticon {
+    margin: 1em;
+    width: 75px;
+    height: 75px;
+  }
+
+  .main-container {    
+    height: 200px;
+    width: 300px;
+  }
+}

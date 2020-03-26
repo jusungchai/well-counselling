@@ -2,18 +2,24 @@ import React from 'react'
 import { Slide } from 'react-slideshow-image';
 import '../styling/ImageCarousel.css'
 
-export default function ImageCarousel() {
-  const slideImages = [
-    'https://content.linkedin.com/content/dam/me/learning/blog/2016/november/Work-Meeting-Small.jpg',
-    'https://secureservercdn.net/198.71.233.204/5xi.ab1.myftpupload.com/wp-content/uploads/2018/03/qtq80-iBjOm3.jpeg',
-    'https://secureservercdn.net/198.71.233.204/5xi.ab1.myftpupload.com/wp-content/uploads/2018/03/qtq50-Q7QAAZ.jpeg'
-  ];
+export default function ImageCarousel(props) {
+  const slideImages = props.data.length > 1 ? props.data : [...props.data, ...props.data];
+
+  const createChildElm = () => {
+    return slideImages.map((url, i) =>
+      <div key={i} className="each-slide">
+        <div style={{ 'backgroundImage': `url(${url})` }}>
+        </div>
+      </div>
+    )
+  }
 
   const properties = {
     duration: 3000,
     transitionDuration: 500,
     infinite: true,
     arrows: false,
+    autoplay: props.data.length > 1 ? true : false,
     onChange: (oldIndex, newIndex) => {
       console.log(`slide transition from ${oldIndex} to ${newIndex}`);
     }
@@ -23,18 +29,7 @@ export default function ImageCarousel() {
     <div>
       <div className="slide-container">
         <Slide {...properties}>
-          <div className="each-slide">
-            <div style={{ 'backgroundImage': `url(${slideImages[0]})` }}>
-            </div>
-          </div>
-          <div className="each-slide">
-            <div style={{ 'backgroundImage': `url(${slideImages[1]})` }}>
-            </div>
-          </div>
-          <div className="each-slide">
-            <div style={{ 'backgroundImage': `url(${slideImages[2]})` }}>
-            </div>
-          </div>
+          {createChildElm()}
         </Slide>
       </div>
     </div>

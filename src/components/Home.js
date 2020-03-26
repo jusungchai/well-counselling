@@ -40,10 +40,16 @@ export default function Home() {
     ]
   }
 
+  const slideImages = [
+    'https://content.linkedin.com/content/dam/me/learning/blog/2016/november/Work-Meeting-Small.jpg',
+    'https://secureservercdn.net/198.71.233.204/5xi.ab1.myftpupload.com/wp-content/uploads/2018/03/qtq80-iBjOm3.jpeg',
+    'https://secureservercdn.net/198.71.233.204/5xi.ab1.myftpupload.com/wp-content/uploads/2018/03/qtq50-Q7QAAZ.jpeg'
+  ];
+
   return (
     <div>      
       <Header data={headerField} />             
-      <ImageCarousel />
+      <ImageCarousel data={slideImages} />
       {/* <h1 style={{fontWeight: "bold", textAlign: "center", padding: "1em"}}>WELL COUNSELLING 에 오신 것을 환영합니다</h1> */}
       <MessageContainer data={messageField} />
       <MessageContainer data={messageField1} />
