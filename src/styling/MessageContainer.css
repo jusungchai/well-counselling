@@ -53,3 +53,14 @@ img {
     flex-direction: column-reverse;    
   }
 }
+
+@media only screen and (max-width: 400px) {
+  img {    
+    width: 250px;
+    height: 250px;    
+  }
+
+  .title {
+    font-size: 30px; 
+  }
+}
