@@ -7,12 +7,16 @@ export default function InfoContainer(props) {
       <p key={id}>{message}</p>
     )
   }
+
+  const createInfo = () => {
+    return props.data.info.map((msg, i) => <li key={i}>{msg}</li>)
+  }
   return (
-    <div className="info-container">
+    <div>
       <div>
         <h1 className="title">{props.data.title}</h1>
       </div>
-      <div className="inner-container">
+      <div className="quote-container">
         <div className="message">
           {createParagraph()}
         </div>
@@ -22,6 +26,14 @@ export default function InfoContainer(props) {
               <img alt={props.data.image.name} src={props.data.image.url} />
             </div> : null
         }
+      </div>
+      <div>
+        <div>
+          <h3>{props.data.infoTitle}</h3>
+        </div>
+        <ol>
+          {createInfo()}
+        </ol>
       </div>
     </div>
   )
