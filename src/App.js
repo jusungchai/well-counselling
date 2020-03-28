@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Appbar from './components/Appbar';
 import Home from './components/Home';
 import Checklist from './components/Checklist';
+import Group from './components/Group';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Switch>
           <Route path="/" component={Home} exact />
           <Route path="/checklist" component={Checklist} exact />
+          <Route path="/group" component={Group} exact />
           <Route>
             404 Error
           </Route>

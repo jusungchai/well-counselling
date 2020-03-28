@@ -1,14 +1,14 @@
 import React from 'react'
-import '../styling/MessageContainer.css'
+import '../styling/InfoContainer.css'
 
-export default function MessageContainer(props) {
+export default function InfoContainer(props) {
   const createParagraph = () => {
     return props.data.message.map((message, id) =>
       <p key={id}>{message}</p>
     )
   }
   return (
-    <div className="message-container">
+    <div className="info-container">
       <div>
         <h1 className="title">{props.data.title}</h1>
       </div>
