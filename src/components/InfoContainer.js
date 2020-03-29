@@ -12,11 +12,11 @@ export default function InfoContainer(props) {
     return props.data.info.map((msg, i) => <li key={i}>{msg}</li>)
   }
   return (
-    <div>
-      <div>
+    <div className="main program container">
+      <div className="program title container">
         <h1 className="title">{props.data.title}</h1>
       </div>
-      <div className="quote-container">
+      <div className="program quote container">
         <div className="message">
           {createParagraph()}
         </div>
@@ -27,9 +27,9 @@ export default function InfoContainer(props) {
             </div> : null
         }
       </div>
-      <div>
+      <div className="program info container">
         <div>
-          <h3>{props.data.infoTitle}</h3>
+          <h4>{props.data.infoTitle}</h4>
         </div>
         <ol>
           {createInfo()}
