@@ -32,16 +32,22 @@ h1.title::after {
   font-weight: normal;
 }
 
-div.message::before{
+div.message::before {
   content: "\f10d";
   font-family: "FontAwesome";
   color: #acb7c3;
 }
 
-div.message::after{
+div.message::after {
   content: "\f10e";
   font-family: "FontAwesome";
   align-self: flex-end;
+  color: #acb7c3;
+}
+
+h4::before {
+  content: "\f105  ";
+  font-family: "FontAwesome";
   color: #acb7c3;
 }
 

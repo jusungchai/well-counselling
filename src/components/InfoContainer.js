@@ -9,7 +9,20 @@ export default function InfoContainer(props) {
   }
 
   const createInfo = () => {
-    return props.data.info.map((msg, i) => <li key={i}>{msg}</li>)
+    return (
+      props.data.info.map((elm, i) => {
+        return (
+          <div key={i}>
+            <div>
+              <h4>{elm.infoTitle}</h4>
+            </div>
+            <ol>
+              {elm.info.map((msg, i) => <li key={i}>{msg}</li>)}
+            </ol>
+          </div>
+        )
+      })
+    )
   }
   return (
     <div className="main program container">
@@ -28,12 +41,13 @@ export default function InfoContainer(props) {
         }
       </div>
       <div className="program info container">
-        <div>
+        {createInfo()}
+        {/* <div>
           <h4>{props.data.infoTitle}</h4>
         </div>
         <ol>
           {createInfo()}
-        </ol>
+        </ol> */}
       </div>
     </div>
   )
