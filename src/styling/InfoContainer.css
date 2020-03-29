@@ -1,0 +1,117 @@
+li {
+  white-space: pre-wrap;
+  padding-bottom: 0.5em;
+  font-weight: normal;
+}
+
+.main.program.container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: auto;
+  height: auto;
+  padding-top: 0;
+}
+
+.message > :nth-child(2) {
+  font-weight: normal;
+}
+
+.message > :first-child {
+  color: #ed6955;
+}
+
+.title {
+  padding: 1em 0 1em 0;
+  margin: 0;
+}
+
+h1.title::after {
+  content: "이란?";
+  color: black;
+  font-weight: normal;
+}
+
+div.message::before {
+  content: "\f10d";
+  font-family: "FontAwesome";
+  color: #acb7c3;
+}
+
+div.message::after {
+  content: "\f10e";
+  font-family: "FontAwesome";
+  align-self: flex-end;
+  color: #acb7c3;
+}
+
+h4::before {
+  content: "\f105  ";
+  font-family: "FontAwesome";
+  color: #acb7c3;
+}
+
+.program.quote.container {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  color: black;
+  text-shadow: none;
+  padding: 1em;
+}
+
+.program.info.container {
+  padding: 2em 1em 3em 1em;
+  color: black;
+  text-shadow: none;
+}
+
+h4 {
+  text-align: left;
+  padding-bottom: 0.5em;
+  font-weight: bold;
+}
+
+ol {
+  text-align: left;
+}
+
+.message {
+  text-align: left;
+  display: flex;
+  flex: 1;
+  padding: 1em;
+}
+
+.image {
+  display: flex;
+  flex: 1;
+  height: 300px;
+  padding: 1em;
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  margin: auto;
+  border-radius: 0;
+}
+
+.program.title.container {
+  color: rgb(0, 87, 164);
+  text-shadow: none;
+  padding: 0;
+}
+
+
+@media only screen and (max-width: 720px) {
+  .program.quote.container {    
+    flex-direction: column-reverse;    
+  }
+  
+  .image {
+    height: 200px;
+  }
+}
