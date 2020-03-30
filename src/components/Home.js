@@ -50,11 +50,10 @@ export default function Home() {
     <div>      
       <Header data={headerField} />             
       <ImageCarousel data={slideImages} />
-      {/* <h1 style={{fontWeight: "bold", textAlign: "center", padding: "1em"}}>WELL COUNSELLING 에 오신 것을 환영합니다</h1> */}
       <MessageContainer data={messageField} />
-      <MessageContainer data={messageField1} />
+      {/* <MessageContainer data={messageField1} />
       <MessageContainer data={messageField} />
-      <MessageContainer data={messageField2} />
+      <MessageContainer data={messageField2} /> */}
     </div>
   )
 }

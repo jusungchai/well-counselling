@@ -26,7 +26,7 @@ li {
   margin: 0;
 }
 
-h1.title::after {
+h1.info.title::after {
   content: "이란?";
   color: black;
   font-weight: normal;
@@ -86,7 +86,7 @@ ol {
 .image {
   display: flex;
   flex: 1;
-  height: 300px;
+  height: 400px;
   padding: 1em;
 }
 

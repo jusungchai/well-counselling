@@ -27,7 +27,7 @@ export default function InfoContainer(props) {
   return (
     <div className="main program container">
       <div className="program title container">
-        <h1 className="title">{props.data.title}</h1>
+        <h1 className="info title">{props.data.title}</h1>
       </div>
       <div className="program quote container">
         <div className="message">
