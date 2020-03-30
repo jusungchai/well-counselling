@@ -13,12 +13,13 @@ li {
   padding-top: 0;
 }
 
-.program.message > :nth-child(2) {
+.program.message > * {
   font-weight: normal;
 }
 
 .program.message > :first-child {
   color: #ed6955;
+  font-weight: bold;
 }
 
 .info.title {
@@ -105,6 +106,11 @@ img {
   color: rgb(0, 87, 164);
   text-shadow: none;
   padding: 0;
+}
+
+.program.message > * {
+  margin: 0;
+  padding: 0.5em;
 }
 
 
