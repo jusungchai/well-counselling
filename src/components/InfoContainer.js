@@ -14,7 +14,7 @@ export default function InfoContainer(props) {
         return (
           <div key={i}>
             <div>
-              <h4>{elm.infoTitle}</h4>
+              <h4 className="program">{elm.infoTitle}</h4>
             </div>
             <ol>
               {elm.info.map((msg, i) => <li key={i}>{msg}</li>)}
@@ -30,7 +30,7 @@ export default function InfoContainer(props) {
         <h1 className="info title">{props.data.title}</h1>
       </div>
       <div className="program quote container">
-        <div className="message">
+        <div className="program message">
           {createParagraph()}
         </div>
         {
@@ -42,12 +42,6 @@ export default function InfoContainer(props) {
       </div>
       <div className="program info container">
         {createInfo()}
-        {/* <div>
-          <h4>{props.data.infoTitle}</h4>
-        </div>
-        <ol>
-          {createInfo()}
-        </ol> */}
       </div>
     </div>
   )

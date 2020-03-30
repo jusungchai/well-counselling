@@ -8,12 +8,12 @@ export default function MessageContainer(props) {
     )
   }
   return (
-    <div className="message-container">
-      <div>
-        <h1 className="title">{props.data.title}</h1>
+    <div className="main home container">
+      <div className="home title container">
+        <h1 className="home title">{props.data.title}</h1>
       </div>
-      <div className="inner-container">
-        <div className="message">
+      <div className="home inner container">
+        <div className="home message">
           {createParagraph()}
         </div>
         {
