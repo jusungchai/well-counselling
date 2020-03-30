@@ -13,17 +13,19 @@ li {
   padding-top: 0;
 }
 
-.message > :nth-child(2) {
+.program.message > * {
   font-weight: normal;
 }
 
-.message > :first-child {
+.program.message > :first-child {
   color: #ed6955;
+  font-weight: bold;
 }
 
-.title {
+.info.title {
   padding: 1em 0 1em 0;
   margin: 0;
+  font-weight: bold;
 }
 
 h1.info.title::after {
@@ -32,20 +34,20 @@ h1.info.title::after {
   font-weight: normal;
 }
 
-div.message::before {
+div.program.message::before {
   content: "\f10d";
   font-family: "FontAwesome";
   color: #acb7c3;
 }
 
-div.message::after {
+div.program.message::after {
   content: "\f10e";
   font-family: "FontAwesome";
   align-self: flex-end;
   color: #acb7c3;
 }
 
-h4::before {
+h4.program::before {
   content: "\f105  ";
   font-family: "FontAwesome";
   color: #acb7c3;
@@ -66,7 +68,7 @@ h4::before {
   text-shadow: none;
 }
 
-h4 {
+h4.program {
   text-align: left;
   padding-bottom: 0.5em;
   font-weight: bold;
@@ -76,11 +78,12 @@ ol {
   text-align: left;
 }
 
-.message {
+.program.message {
   text-align: left;
   display: flex;
   flex: 1;
   padding: 1em;
+  flex-direction: column;
 }
 
 .image {
@@ -105,6 +108,11 @@ img {
   padding: 0;
 }
 
+.program.message > * {
+  margin: 0;
+  padding: 0.5em;
+}
+
 
 @media only screen and (max-width: 720px) {
   .program.quote.container {    
@@ -112,6 +120,6 @@ img {
   }
   
   .image {
-    height: 200px;
+    height: 300px;
   }
 }
