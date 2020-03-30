@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Checklist from './components/Checklist';
 import Group from './components/Group';
 import Personal from './components/Personal';
+import Intro from './components/Intro';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/checklist" component={Checklist} exact />
           <Route path="/group" component={Group} exact />
           <Route path="/personal" component={Personal} exact />
+          <Route path="/intro" component={Intro} exact />
           <Route>
             404 Error
           </Route>
