@@ -1,0 +1,12 @@
+#members > .main.home.container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 5em auto 3em auto;
+  flex-direction: row;
+}
+
+@media only screen and (max-width: 720px) {
+  #members > .main.home.container {
+    margin-top: 0;
+  } 
+}
