@@ -12,22 +12,22 @@
   justify-content: center;
   align-items: center;
   margin: 1em;
+  color: black;
+  text-shadow: none;
+  margin-bottom: 3em;
 }
 
 .emoticon {
   margin: 1em;
   width: 100px;
   height: 100px;
+  flex: 1;
 }
 
-.msgKr {
-  font-size: 1.5rem;
+.msgKr,.msgEn{
+  font-size: unset;
   font-weight: bold;
-}
-
-.msgEn {
-  font-size: 1.5rem;
-  font-weight: bold;
+  word-break: break-word;
 }
 
 .msgcontainer {
@@ -36,19 +36,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex: 2;
+}
+
+#checklist-header {
+  color: black;
+  text-shadow: none;
+  padding: 1em 0 1em 0;
 }
 
 @media only screen and (max-width: 450px) {
-  .msgKr {
-    font-size: 1rem;
-  }
-  
-  .msgEn {
-    font-size: 1rem;
-  }
-
   .emoticon {
-    margin: 1em;
     width: 75px;
     height: 75px;
   }
