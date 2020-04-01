@@ -7,7 +7,14 @@
   padding-top: 0;
 }
 
-#checklist-header {
+#main-check-list-container {
+  display: flex;
+  max-width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* #checklist-header {
   text-align: center;
   font-weight: bold;
   font-size: 3rem;
@@ -28,4 +35,4 @@
   #checklist-header {    
     font-size: 30px;    
   }
-}
+} */
