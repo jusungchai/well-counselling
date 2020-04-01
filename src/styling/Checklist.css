@@ -1,7 +1,10 @@
-#main-check-list-container {
+.main.checklist.container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  position: relative;
+  margin: auto;
+  height: auto;
+  padding-top: 0;
 }
 
 #checklist-header {

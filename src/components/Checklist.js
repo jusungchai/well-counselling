@@ -58,18 +58,10 @@ export default function Checklist() {
     <div>
       <Header data={headerField} />
       <ImageCarousel data={bannerImage} />
-      <div id="main checklist-container">
+      <div className="main checklist container">
         <h1 id="checklist-header">Self Checklist</h1>
         <div id="main-check-list-container">
           {createChecklists()}
-          {/* <div>
-            <ChecklistContainer data={checklistData1} />
-            <ChecklistContainer data={checklistData2} />
-          </div>
-          <div>
-            <ChecklistContainer data={checklistData3} />
-            <ChecklistContainer data={checklistData4} />
-          </div> */}
         </div>
       </div>
     </div>
