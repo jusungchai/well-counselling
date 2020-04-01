@@ -4,7 +4,7 @@ import '../styling/Member.css'
 export default function Member(props) {
   return (
     <div className="member-container">
-      <img className="member-avatar" alt="member" src={props.data.url} />
+      <img className="member-avatar" alt="member" src={props.data.avatar} />
       <div className="member-avatar-info">
         <h3>{props.data.firstName} {props.data.lastName}</h3>
         <p>{props.data.title}</p>
