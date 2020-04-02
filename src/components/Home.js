@@ -6,7 +6,6 @@ import axios from 'axios'
 
 export default function Home() {
   const [data, setData] = useState(null)
-  const [loading, setLoading] = useState(true)
 
   const headerField = {
     title: "Welcome to Well Counselling",
@@ -21,7 +20,7 @@ export default function Home() {
 
   useEffect(() => {
     axios.get('/homeInformations')
-      .then(res => {setData(res.data); setLoading(false)})
+      .then(res => setData(res.data))
   }, [])
 
   // const messageArray = [
@@ -84,7 +83,7 @@ export default function Home() {
     <div>
       <Header data={headerField} />
       <ImageCarousel data={slideImages} />
-      {loading ? null : createMessageContainers()}
+      {createMessageContainers()}
     </div>
   )
 }
