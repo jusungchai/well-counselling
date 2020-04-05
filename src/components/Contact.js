@@ -4,6 +4,7 @@ import Header from './Header'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import '../styling/Contact.css'
+import axios from 'axios'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -32,7 +33,15 @@ export default function Contact() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setFormData({ ...formData, disabled: true })
-    console.log(formData);
+    axios.post('/contact', formData)
+      .then(res => {
+        if (res.data === "sent") {
+          alert("Email Sent! Someone will get back to you ASAP")
+        } else if (res.data === "failed") {
+          alert("Something went wrong, please try again")
+          setFormData({ ...formData, disabled: false })
+        }
+      })
   }
 
   const headerField = {
