@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button'
 import '../styling/Contact.css'
 import axios from 'axios'
 
-export default function Contact() {
+export default function Contact(props) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -37,6 +37,7 @@ export default function Contact() {
       .then(res => {
         if (res.data === "sent") {
           alert("Email Sent! Someone will get back to you ASAP")
+          props.history.push('/')
         } else if (res.data === "failed") {
           alert("Something went wrong, please try again")
           setFormData({ ...formData, disabled: false })
