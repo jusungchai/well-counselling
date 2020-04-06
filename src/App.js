@@ -14,20 +14,18 @@ import Contact from './components/Contact';
 function App() {
   return (
     <React.Fragment>
-      <Appbar />
       <BrowserRouter>
-        <Switch>
-          <Route path="/" component={Home} exact />
-          <Route path="/checklist" component={Checklist} exact />
-          <Route path="/group" component={Group} exact />
-          <Route path="/personal" component={Personal} exact />
-          <Route path="/intro" component={Intro} exact />
-          <Route path="/members" component={Members} exact />
-          <Route path="/contact" component={Contact} exact />
-          <Route>
-            404 Error
-          </Route>
-        </Switch>
+        <Route path="*" component={Appbar} />
+        <Route path="/" component={Home} exact />
+        <Route path="/checklist" component={Checklist} exact />
+        <Route path="/group" component={Group} exact />
+        <Route path="/personal" component={Personal} exact />
+        <Route path="/intro" component={Intro} exact />
+        <Route path="/members" component={Members} exact />
+        <Route path="/contact" component={Contact} exact />
+        <Route>
+          404 Error
+        </Route>
       </BrowserRouter>
     </React.Fragment>
   );
