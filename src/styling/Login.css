@@ -1,0 +1,19 @@
+.main.login.container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: auto;
+  height: 100vh;
+  padding-top: 0; 
+}
+
+#login-container {
+  color: black;
+  text-shadow: none;
+  font-weight: normal;
+  text-align: left; 
+}
+
+#login-button{
+  width: 100%;
+}
