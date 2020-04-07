@@ -1,0 +1,38 @@
+.main.register.container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: auto;
+  height: 100vh;
+  padding-top: 0; 
+}
+
+#register-container {
+  color: black;
+  text-shadow: none;
+  font-weight: normal;
+  text-align: left; 
+}
+
+#register-button {
+  width: 100%;
+}
+
+#name-container {
+  display: flex;
+}
+
+#first-name {
+  padding-right: 0.5em;
+}
+
+#last-name {
+  padding-left: 0.5em;
+}
+
+
+@media only screen and (max-width: 400px) {
+  .register.form {
+    margin-top: 5em;
+  } 
+}
