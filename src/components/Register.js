@@ -3,8 +3,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import '../styling/Register.css'
 import axios from 'axios'
-import { useSelector, useDispatch } from 'react-redux'
-import { login } from '../actions'
+import { useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
 export default function Register(props) {
@@ -43,6 +42,16 @@ export default function Register(props) {
     e.preventDefault();
     if (checkPassword()) {
       updateField({ ...field, disabled: true })
+      axios.post('/auth/register', field)
+      .then(res => {
+        if (res.data === "user created") {
+          alert("Success, Please Login")
+          props.history.push('/login')
+        } else if (res.data === "email already registered") {
+          alert("Provided email is already registered")
+          updateField({ ...field, disabled: false })
+        } 
+      })
     }
   }
 
