@@ -1,0 +1,68 @@
+import React, { useState } from 'react'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import '../styling/Login.css'
+import axios from 'axios'
+
+export default function Login(props) {
+  const [pw, togglePW] = useState("password")
+  const [field, updateField] = useState({
+    email: "",
+    password: "",
+    disabled: false
+  })
+
+  const showPW = () => {
+    pw === "password" ? togglePW("") : togglePW("password")
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateField({ ...field, disabled: true })
+    axios.post('/auth/login', field)
+      .then(res => {
+        if (res.data === "logged in") {
+          alert("Logged In")
+          props.history.push('/')
+        }
+        else if (res.data === "wrong pw") {
+          alert("Wrong Password")
+          updateField({ ...field, disabled: false })
+        } else if (res.data === "user not found") {
+          alert("Unable to find registered user")
+          updateField({ ...field, disabled: false })
+        }
+      })
+  }
+
+  const handleChange = (e, type) => {
+    switch (type) {
+      case "email":
+        return updateField({ ...field, email: e.target.value })
+      case "password":
+        return updateField({ ...field, password: e.target.value })
+      default:
+        console.log("default")
+    }
+  }
+
+  return (
+    <div className="main login container">
+      <div id="login-container">
+        <Form className="login form" onSubmit={(e) => handleSubmit(e)}>
+          <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Label>Email</Form.Label>
+            <Form.Control type="email" placeholder="name@example.com" required onChange={(e) => handleChange(e, "email")} />
+          </Form.Group>
+          <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type={pw} required onChange={(e) => handleChange(e, "password")} />
+            <input type="checkbox" onClick={() => showPW()} /> Show Password
+          </Form.Group>
+          <Button id="login-button" type="submit" disabled={field.disabled}>Login</Button>
+        </Form>
+      </div>
+
+    </div>
+  )
+}

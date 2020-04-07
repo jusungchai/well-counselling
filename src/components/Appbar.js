@@ -12,18 +12,17 @@ export default function Appbar(props) {
     axios.post('/auth/logout')
       .then(res => {
         if (res.data === "out")
-          setLoginStatus(false)
-        // props.history.push('/')
+          // setLoginStatus(false)
+        props.history.push('/')
       })
   }
 
   const login = () => {
-    axios.post('/auth/login')
-      .then(res => {
-        if (res.data === "in")
-          setLoginStatus(true)
-        // props.history.push('/login')
-      })
+    props.history.push('/login')    
+  }
+
+  const register = () => {
+    props.history.push('/register')
   }
 
   useEffect(() => {
@@ -49,7 +48,7 @@ export default function Appbar(props) {
       <NavDropdown title="Counsellors" id="basic-nav-dropdown">
         <NavDropdown.Item onClick={() => login()}>Login</NavDropdown.Item>
         <NavDropdown.Divider />
-        <NavDropdown.Item href="/register">Register</NavDropdown.Item>
+        <NavDropdown.Item onClick={() => register()}>Register</NavDropdown.Item>
       </NavDropdown>
     )
   }
