@@ -3,8 +3,14 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import '../styling/Login.css'
 import axios from 'axios'
+import { useSelector, useDispatch } from 'react-redux'
+import { login } from '../actions'
+import { Redirect } from 'react-router-dom'
 
 export default function Login(props) {
+  const isLogged = useSelector(state => state.isLogged)
+  const dispatch = useDispatch();
+
   const [pw, togglePW] = useState("password")
   const [field, updateField] = useState({
     email: "",
@@ -23,6 +29,7 @@ export default function Login(props) {
       .then(res => {
         if (res.data === "logged in") {
           alert("Logged In")
+          dispatch(login())
           props.history.push('/')
         }
         else if (res.data === "wrong pw") {
@@ -46,7 +53,7 @@ export default function Login(props) {
     }
   }
 
-  return (
+  return isLogged ? <Redirect to='/' /> : (
     <div className="main login container">
       <div id="login-container">
         <Form className="login form" onSubmit={(e) => handleSubmit(e)}>
@@ -62,7 +69,6 @@ export default function Login(props) {
           <Button id="login-button" type="submit" disabled={field.disabled}>Login</Button>
         </Form>
       </div>
-
     </div>
   )
 }

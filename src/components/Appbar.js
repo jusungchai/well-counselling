@@ -4,51 +4,55 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import axios from 'axios'
+import { useSelector, useDispatch } from 'react-redux'
+import { login, logout } from '../actions'
 
 export default function Appbar(props) {
-  const [loginStatus, setLoginStatus] = useState(false)
+  const isLogged = useSelector(state => state.isLogged)
+  const dispatch = useDispatch();
 
-  const logout = () => {
+  const handleLogout = () => {
     axios.post('/auth/logout')
-      .then(res => {
-        if (res.data === "out")
-          // setLoginStatus(false)
-        props.history.push('/')
+      .then((res) => {
+        if (res.data === "logged out") {
+          dispatch(logout())
+          props.history.push('/')
+        }
       })
   }
 
-  const login = () => {
-    props.history.push('/login')    
+  const linkToLogin = () => {
+    props.history.push('/login')
   }
 
-  const register = () => {
+  const linkToRegister = () => {
     props.history.push('/register')
   }
 
   useEffect(() => {
     axios.get('/auth')
       .then(res => {
-        res.data === "in" ? setLoginStatus(true) : setLoginStatus(false)
+        res.data === "in" ? dispatch(login()) : dispatch(logout())
       })
-  }, [])
+  }, [isLogged])
 
   const dashBoard = () => {
-    if (loginStatus) {
+    if (isLogged) {
       return (
         <NavDropdown title="Counsellors" id="basic-nav-dropdown">
           <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item href="/setting">Setting</NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
+          <NavDropdown.Item onClick={() => handleLogout()}>Logout</NavDropdown.Item>
         </NavDropdown>
       )
     }
     return (
       <NavDropdown title="Counsellors" id="basic-nav-dropdown">
-        <NavDropdown.Item onClick={() => login()}>Login</NavDropdown.Item>
+        <NavDropdown.Item onClick={() => linkToLogin()}>Login</NavDropdown.Item>
         <NavDropdown.Divider />
-        <NavDropdown.Item onClick={() => register()}>Register</NavDropdown.Item>
+        <NavDropdown.Item onClick={() => linkToRegister()}>Register</NavDropdown.Item>
       </NavDropdown>
     )
   }
