@@ -40,6 +40,7 @@ export default function Login(props) {
           updateField({ ...field, disabled: false })
         }
       })
+      .catch(err => alert(err))
   }
 
   const handleChange = (e, type) => {

@@ -1,0 +1,17 @@
+.main.profile.container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: auto;
+  height: auto;
+  padding-top: 10em;
+}
+
+.profile.form {
+  width: 80%;
+  color: black;
+  text-shadow: none;
+  font-weight: normal;
+  text-align: left;
+  margin-bottom: 3em;
+}
