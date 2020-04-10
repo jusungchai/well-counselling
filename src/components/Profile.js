@@ -88,9 +88,7 @@ export default function Profile() {
       case "avatar":
         const avatarData = e.target.files[0];
         if ((avatarData.type === "image/jpeg" || avatarData.type === "image/png") && (avatarData.size <= 2621440)) {
-          const formData = new FormData()          
-          formData.append('avatar', avatarData)          
-          setBio({ ...bio, avatar: e.target.value, avatarData: formData })
+          setBio({ ...bio, avatar: e.target.value, avatarData })
           alert("ok")
         } else {
           setBio({ ...bio, avatar: "", avatarData: null })
@@ -104,8 +102,12 @@ export default function Profile() {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(bio.avatarData)
-    axios.post('/profile', bio)
+    const formData = new FormData()
+    //formData.append('avatar', bio.avatarData)
+    for (const key of Object.keys(bio)){
+      formData.append('bio', bio[key])
+    }
+    axios.post('/profile', formData)
       .then(res => alert(res.data))
   }
 
@@ -127,7 +129,7 @@ export default function Profile() {
             <Button className="btn btn-info" style={{ width: "100%" }} onClick={() => handleShow("avatar")}>PROFILE IMAGE</Button>
             <div className="profileEditor" style={{ display: show.avatar }}>
               <label style={{ color: "red", fontSize: "small" }}>(ONLY ADD TO CHANGE CURRENT FILE)</label>
-              <input className="form-control-file" id="exampleFormControlFile1" value={bio.avatar || ""} type='file' accept='image/jpeg, image/png' onChange={(e) => handleChange(e, "avatar")} />
+              <input value={bio.avatar || ""} name='file' type='file' accept='image/jpeg, image/png' onChange={(e) => handleChange(e, "avatar")} />
             </div>
           </div>
 
