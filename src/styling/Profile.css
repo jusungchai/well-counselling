@@ -15,3 +15,21 @@
   text-align: left;
   margin-bottom: 3em;
 }
+
+.profileContainer {
+  margin-bottom: 1em;
+  border-bottom: 1px solid;
+  padding-bottom: 1em;
+}
+
+.profileEditor {
+  border-style: solid;
+  padding: 0.5em;
+  margin-top: 0.5em;
+  border-width: thin;
+}
+
+.profileEditor > textarea,input,label {
+  width: 100%;
+  padding: 0.5em;
+}
