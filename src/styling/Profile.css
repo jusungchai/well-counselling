@@ -1,0 +1,35 @@
+.main.profile.container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: auto;
+  height: auto;
+  padding-top: 10em;
+}
+
+.profile.form {
+  width: 80%;
+  color: black;
+  text-shadow: none;
+  font-weight: normal;
+  text-align: left;
+  margin-bottom: 3em;
+}
+
+.profileContainer {
+  margin-bottom: 1em;
+  border-bottom: 1px solid;
+  padding-bottom: 1em;
+}
+
+.profileEditor {
+  border-style: solid;
+  padding: 0.5em;
+  margin-top: 0.5em;
+  border-width: thin;
+}
+
+.profileEditor > textarea,input,label {
+  width: 100%;
+  padding: 0.5em;
+}

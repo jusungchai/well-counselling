@@ -11,6 +11,7 @@ export default function Members() {
   useEffect(() => {
     axios.get("/users/profiles")
       .then(res => {
+        console.log(res.data)
         setMembers(res.data);
       })
   }, [])

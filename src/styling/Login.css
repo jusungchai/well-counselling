@@ -17,3 +17,12 @@
 #login-button{
   width: 100%;
 }
+
+.login-form > label, #showPW {
+  padding: 0;
+  width: auto;
+}
+
+.login-field {
+  padding: 0.5em;
+}
