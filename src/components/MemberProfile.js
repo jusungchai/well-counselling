@@ -20,9 +20,9 @@ export default function MemberProfile({ match }) {
         }
       })
       .catch(error => console.log(error))
-      console.log(state)
+    console.log(state)
   }, [])
-  
+
   return state.loading ? null : (
     state.bio.msg ?
       <div>
@@ -40,7 +40,7 @@ export default function MemberProfile({ match }) {
         <br />
         <h1>YOLO</h1>
         <h1>{profileId}</h1>
-        <p>{state.bio.info}</p>
+        <p>{state.bio.info}</p>        
       </div>
   )
 }
