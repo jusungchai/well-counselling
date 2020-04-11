@@ -13,6 +13,7 @@ import Contact from './components/Contact';
 import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
+import MemberProfile from './components/MemberProfile';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/login" component={Login} exact />
           <Route path="/register" component={Register} exact />
           <Route path="/profile" component={Profile} exact />
+          <Route path="/member/:profileId" component={MemberProfile} exact />
           <Route>404</Route>
         </Switch>
       </BrowserRouter>

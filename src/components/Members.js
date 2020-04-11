@@ -5,7 +5,7 @@ import Member from './Member'
 import '../styling/Members.css'
 import axios from 'axios'
 
-export default function Members() {
+export default function Members(props) {
   const [members, setMembers] = useState(null);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function Members() {
 
   const createMembers = () => {
     if (members)
-      return members.map((member, i) => <Member key={i} data={member} />)
+      return members.map((member, i) => <Member key={i} data={member} history={props} />)
   }
 
   return (
