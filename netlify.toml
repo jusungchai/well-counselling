@@ -9,6 +9,7 @@
   publish = "build/"
 
   # Default build command.
+  command = "CI: """
   command = "npm run build"
 
 [build.environment]
