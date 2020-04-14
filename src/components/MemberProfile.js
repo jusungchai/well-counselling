@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import ImageCarousel from './ImageCarousel'
+import Header from './Header'
+import Button from 'react-bootstrap/Button'
+import '../styling/MemberProfile.css'
 
 export default function MemberProfile({ match }) {
   const { params: { profileId } } = match;
 
+  const slideImages = [
+    'https://secureservercdn.net/198.71.233.204/5xi.ab1.myftpupload.com/wp-content/uploads/2018/03/qtq50-Q7QAAZ.jpeg'
+  ];
+
   const [state, setState] = useState({
     loading: true,
-    bio: ""
+    bio: "",
+    headerField: ""
   })
 
   const [display, toggleDisplay] = useState({
@@ -48,7 +57,7 @@ export default function MemberProfile({ match }) {
       .then(res => {
         console.log(res.data[0])
         if (res.data.length > 0) {
-          setState({ loading: false, bio: res.data[0].data })
+          setState({ loading: false, bio: res.data[0].data, headerField: { title: `${res.data[0].firstname} ${res.data[0].lastname}` } })
         } else {
           setState({ loading: false, bio: { msg: "This Profile Does Not Exist" } })
         }
@@ -58,77 +67,78 @@ export default function MemberProfile({ match }) {
   }, [])
 
   return state.loading ? null : (
-    state.bio.msg ?
-      <div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <h1>{state.bio.msg}</h1>
+    <div id="memberProfile">
+      <Header data={state.headerField || { title: "COUNSELLOR" }} />
+      <ImageCarousel data={slideImages} />
+      <div className="main member container">
+        {
+          state.bio.msg ?
+            <div className="profile-inner-container">
+              <h1>{state.bio.msg}</h1>
+            </div>
+            :
+            <div className="profile-inner-container">
+              <div className="profile-image-container">
+                <img src={state.bio.avatarURL} />
+              </div>
+              <div className="profile-buttons-container">
+                <div>
+                  <Button variant="info" onClick={() => handleDisplay("info")}>
+                    INFO
+                  </Button>
+                  <div style={{ display: display.info }}>
+                    <p>{state.bio.info}</p>
+                  </div>
+                </div>
+                <div>
+                  <Button variant="info" onClick={() => handleDisplay("jobTitle")}>
+                    현제직위명
+                  </Button>
+                  <div style={{ display: display.jobTitle }}>
+                    <p>{state.bio.jobTitle}</p>
+                  </div>
+                </div>
+                <div>
+                  <Button variant="info" onClick={() => handleDisplay("specialField")}>
+                    전문상담/코칭 분야
+                  </Button>
+                  <div style={{ display: display.specialField }}>
+                    <p>{state.bio.specialField}</p>
+                  </div>
+                </div>
+                <div>
+                  <Button variant="info" onClick={() => handleDisplay("certificate")}>
+                    전문 자격증
+                  </Button>
+                  <div style={{ display: display.certificate }}>
+                    <p>{state.bio.certificate}</p>
+                  </div>
+                </div>
+                <div>
+                  <Button variant="info" onClick={() => handleDisplay("experience")}>
+                    상담/코칭 경력
+                  </Button>
+                  <div style={{ display: display.experience }}>
+                    <p>{state.bio.experience}</p>
+                  </div>
+                </div>
+                <div>
+                  <Button variant="info" onClick={() => handleDisplay("degree")}>
+                    EDUCATIONAL DEGREE
+                  </Button>
+                  <div style={{ display: display.degree }}>
+                    <p>{state.bio.degree}</p>
+                  </div>
+                </div>
+                <div>
+                  <Button variant="info" onClick={() => window.open(state.bio.blog)}>
+                    BLOG
+                  </Button>
+                </div>
+              </div>
+            </div>
+        }
       </div>
-      :
-      <div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <h1>YOLO</h1>
-        <div>
-          <img src={state.bio.avatarURL} />
-        </div>
-        <div>
-          <button onClick={() => handleDisplay("info")}>
-            INFO
-          </button>
-          <div style={{ display: display.info }}>
-            <p>{state.bio.info}</p>
-          </div>
-        </div>
-        <div>
-          <button onClick={() => handleDisplay("jobTitle")}>
-            현제직위명
-          </button>
-          <div style={{ display: display.jobTitle }}>
-            <p>{state.bio.jobTitle}</p>
-          </div>
-        </div>
-        <div>
-          <button onClick={() => handleDisplay("specialField")}>
-            전문상담/코칭 분야
-          </button>
-          <div style={{ display: display.specialField }}>
-            <p>{state.bio.specialField}</p>
-          </div>
-        </div>
-        <div>
-          <button onClick={() => handleDisplay("certificate")}>
-            전문 자격증
-          </button>
-          <div style={{ display: display.certificate }}>
-            <p>{state.bio.certificate}</p>
-          </div>
-        </div>
-        <div>
-          <button onClick={() => handleDisplay("experience")}>
-            상담/코칭 경력
-          </button>
-          <div style={{ display: display.experience }}>
-            <p>{state.bio.experience}</p>
-          </div>
-        </div>
-        <div>
-          <button onClick={() => handleDisplay("degree")}>
-            EDUCATIONAL DEGREE
-          </button>
-          <div style={{ display: display.degree }}>
-            <p>{state.bio.degree}</p>
-          </div>
-        </div>
-        <div>
-          <button onClick={() => window.open(state.bio.blog)}>
-            BLOG
-          </button>
-        </div>
-      </div>
+    </div>
   )
 }
