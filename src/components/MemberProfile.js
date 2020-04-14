@@ -79,7 +79,7 @@ export default function MemberProfile({ match }) {
             :
             <div className="profile-inner-container">
               <div className="profile-image-container">
-                <img src={state.bio.avatarURL} />
+                <img alt="" src={state.bio.avatarURL} />
               </div>
               <div className="profile-buttons-container">
                 <div>
