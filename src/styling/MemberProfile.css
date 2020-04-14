@@ -1,0 +1,80 @@
+.main.member.container {
+  position: relative;
+  margin: auto;
+  height: auto;
+  padding-top: 3em;
+  padding-bottom: 5em;
+}
+
+.profile-inner-container {
+  display: flex;
+  width: 80%;
+}
+
+.profile-image-container {
+  display: flex;
+  flex: 1;
+  height: 400px;
+  width: 100%;  
+}
+
+.profile-buttons-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile-buttons-container > div > button{
+  width: 100%;
+}
+
+.profile-inner-container > div {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.profile-buttons-container > div {
+  margin-top: 0.5em;
+}
+
+.profile-buttons-container > div > div {
+  display: none;
+  color: black;
+  text-shadow: none;
+  font-weight: normal;
+  text-align: left;
+  border-style: outset;
+  padding: 0.5em;
+}
+
+.profile-buttons-container > div > div > p {
+  white-space: pre-wrap;
+}
+
+.profile-image-container > img {
+  border-radius: 10px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .profile-inner-container {
+    flex-direction: column;    
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .profile-image-container {
+    height: 300px;
+    align-self: center;
+  }
+
+  .profile-buttons-container > div > div > p {
+    font-size: small;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .profile-image-container {
+    height: 200px;
+  }
+}
