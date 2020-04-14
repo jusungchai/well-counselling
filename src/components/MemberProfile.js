@@ -68,7 +68,7 @@ export default function MemberProfile({ match }) {
 
   return state.loading ? null : (
     <div id="memberProfile">
-      <Header data={state.headerField || { title: "COUNSELLOR" }}  />
+      <Header data={state.headerField || { title: "COUNSELLOR" }} />
       <ImageCarousel data={slideImages} />
       <div className="main member container">
         {
