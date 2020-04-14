@@ -53,7 +53,7 @@ export default function MemberProfile({ match }) {
   }
 
   useEffect(() => {
-    axios.get(`/users/profile?id=${profileId}`)
+    axios.get(`/users/profile?id=${profileId}`, { withCredentials: true })
       .then(res => {
         console.log(res.data[0])
         if (res.data.length > 0) {

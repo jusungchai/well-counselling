@@ -33,7 +33,7 @@ export default function Contact(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     setFormData({ ...formData, disabled: true })
-    axios.post('/contact', formData)
+    axios.post('/contact', formData, { withCredentials: true })
       .then(res => {
         if (res.data === "sent") {
           alert("Email Sent! Someone will get back to you ASAP")

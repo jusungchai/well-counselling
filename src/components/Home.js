@@ -19,7 +19,7 @@ export default function Home() {
   ];
 
   useEffect(() => {
-    axios.get('/homeInformations')
+    axios.get('/homeInformations', { withCredentials: true })
       .then(res => setData(res.data))
   }, [])
 

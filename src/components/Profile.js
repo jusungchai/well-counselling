@@ -28,7 +28,7 @@ export default function Profile() {
   })
 
   useEffect(() => {
-    axios.get('/profile')
+    axios.get('/profile', { withCredentials: true })
       .then(res => {
         if (res.data.data) {
           console.log(res.data.data)
@@ -107,7 +107,7 @@ export default function Profile() {
     for (const key of Object.keys(bio)){
       formData.append('bio', bio[key])
     }
-    axios.post('/profile', formData)
+    axios.post('/profile', formData, { withCredentials: true })
       .then(res => alert(res.data))
   }
 

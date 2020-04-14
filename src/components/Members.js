@@ -9,7 +9,7 @@ export default function Members(props) {
   const [members, setMembers] = useState(null);
 
   useEffect(() => {
-    axios.get("/users/profiles")
+    axios.get("/users/profiles", { withCredentials: true })
       .then(res => {
         console.log(res.data)
         setMembers(res.data);

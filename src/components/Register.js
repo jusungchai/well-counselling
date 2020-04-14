@@ -43,7 +43,7 @@ export default function Register(props) {
     e.preventDefault();
     if (checkPassword()) {
       updateField({ ...field, disabled: true })
-      axios.post('/auth/register', field)
+      axios.post('/auth/register', field, { withCredentials: true })
         .then(res => {
           if (res.data === "user created") {
             alert("Success, Please Login")

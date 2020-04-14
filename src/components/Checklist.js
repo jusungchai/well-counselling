@@ -9,7 +9,7 @@ export default function Checklist() {
   const [checklists, setChecklists] = useState(null);
 
   useEffect(() => {
-    axios.get('/checklists')
+    axios.get('/checklists', { withCredentials: true })
       .then(res => setChecklists(res.data))
   }, [])
 

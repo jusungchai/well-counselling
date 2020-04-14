@@ -25,7 +25,7 @@ export default function Login(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     updateField({ ...field, disabled: true })
-    axios.post('/auth/login', field)
+    axios.post('/auth/login', field, { withCredentials: true })
       .then(res => {
         if (res.data === "logged in") {
           alert("Logged In")

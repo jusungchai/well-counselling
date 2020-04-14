@@ -12,7 +12,7 @@ export default function Appbar(props) {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    axios.post('/auth/logout')
+    axios.post('/auth/logout', null, { withCredentials: true })
       .then((res) => {
         if (res.data === "logged out") {
           dispatch(logout())
@@ -30,7 +30,7 @@ export default function Appbar(props) {
   }
 
   useEffect(() => {
-    axios.get('/auth')
+    axios.get('/auth', { withCredentials: true })
       .then(res => {
         res.data === "in" ? dispatch(login()) : dispatch(logout())
       })
