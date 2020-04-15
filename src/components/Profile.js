@@ -3,7 +3,7 @@ import axios from 'axios'
 import Button from 'react-bootstrap/Button'
 import '../styling/Profile.css'
 
-export default function Profile() {
+export default function Profile(props) {
   const [bio, setBio] = useState({
     avatar: "",
     info: "",
@@ -26,6 +26,8 @@ export default function Profile() {
     avatar: "none",
     blog: "none"
   })
+
+  const [buttonStatus, setButtonStatus] = useState(false)
 
   useEffect(() => {
     axios.get('/profile', { withCredentials: true })
@@ -102,6 +104,7 @@ export default function Profile() {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
+    setButtonStatus(true)
     const formData = new FormData()
     //formData.append('avatar', bio.avatarData)
     for (const key of Object.keys(bio)){
@@ -109,6 +112,7 @@ export default function Profile() {
     }
     axios.post('/profile', formData, { withCredentials: true })
       .then(res => alert(res.data))
+      .then(() => props.history.push('/members'))
   }
 
   const placeHolder = {
@@ -182,7 +186,7 @@ export default function Profile() {
             </div>
           </div>
 
-          <Button style={{ width: "100%", marginTop: "2em" }} type="submit">PUBLISH</Button>
+          <Button style={{ width: "100%", marginTop: "2em" }} disabled={buttonStatus} type="submit">PUBLISH</Button>
         </form>
       </div>
     </div>
