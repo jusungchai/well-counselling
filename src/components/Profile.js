@@ -182,7 +182,7 @@ export default function Profile(props) {
           <div className="profileContainer">
             <Button className="btn btn-info" style={{ width: "100%" }} onClick={() => handleShow("blog")}>BLOG</Button>
             <div className="profileEditor" style={{ display: show.blog }}>
-              <input name="blog" value={bio.blog} placeholder={placeHolder.blog} type="text" rows="8" onChange={(e) => handleChange(e, "blog")} />
+              <input name="blog" type="url" pattern="^https?:\/\/((?!\s*$).+)" value={bio.blog} placeholder={placeHolder.blog} type="text" rows="8" onChange={(e) => handleChange(e, "blog")} />
             </div>
           </div>
 
