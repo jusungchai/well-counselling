@@ -2,8 +2,13 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Button from 'react-bootstrap/Button'
 import '../styling/Profile.css'
+import { useSelector } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 export default function Profile(props) {
+  const isLogged = useSelector(state => state.isLogged)
+  console.log(isLogged)
+
   const [bio, setBio] = useState({
     avatar: "",
     info: "",
@@ -107,7 +112,7 @@ export default function Profile(props) {
     setButtonStatus(true)
     const formData = new FormData()
     //formData.append('avatar', bio.avatarData)
-    for (const key of Object.keys(bio)){
+    for (const key of Object.keys(bio)) {
       formData.append('bio', bio[key])
     }
     axios.post('/profile', formData, { withCredentials: true })
@@ -125,70 +130,75 @@ export default function Profile(props) {
     blog: "https://naver.com"
   }
 
-  return (
-    <div id="profile-container">
-      <div className="main profile container">
-        <form name="profileForm" className="profile form" onSubmit={(e) => handleSubmit(e)} >
-          <div className="profileContainer">
-            <Button className="btn btn-info" style={{ width: "100%" }} onClick={() => handleShow("avatar")}>PROFILE IMAGE</Button>
-            <div className="profileEditor" style={{ display: show.avatar }}>
-              <label style={{ color: "red", fontSize: "small" }}>(ONLY ADD TO CHANGE CURRENT FILE)</label>
-              <input value={bio.avatar || ""} name='file' type='file' accept='image/jpeg, image/png' onChange={(e) => handleChange(e, "avatar")} />
+  if (isLogged === null)
+    return null
+  else if (isLogged === false)
+    return <Redirect to='/' />
+  else
+    return (
+      <div id="profile-container">
+        <div className="main profile container">
+          <form name="profileForm" className="profile form" onSubmit={(e) => handleSubmit(e)} >
+            <div className="profileContainer">
+              <Button className="btn btn-info" style={{ width: "100%" }} onClick={() => handleShow("avatar")}>PROFILE IMAGE</Button>
+              <div className="profileEditor" style={{ display: show.avatar }}>
+                <label style={{ color: "red", fontSize: "small" }}>(ONLY ADD TO CHANGE CURRENT FILE)</label>
+                <input value={bio.avatar || ""} name='file' type='file' accept='image/jpeg, image/png' onChange={(e) => handleChange(e, "avatar")} />
+              </div>
             </div>
-          </div>
 
-          <div className="profileContainer">
-            <Button className="btn btn-info" style={{ width: "100%" }} onClick={() => handleShow("info")}>INFO</Button>
-            <div className="profileEditor" style={{ display: show.info }}>
-              <textarea name="info" value={bio.info} placeholder={placeHolder.info} as="textarea" rows="8" onChange={(e) => handleChange(e, "info")} />
+            <div className="profileContainer">
+              <Button className="btn btn-info" style={{ width: "100%" }} onClick={() => handleShow("info")}>INFO</Button>
+              <div className="profileEditor" style={{ display: show.info }}>
+                <textarea name="info" value={bio.info} placeholder={placeHolder.info} as="textarea" rows="8" onChange={(e) => handleChange(e, "info")} />
+              </div>
             </div>
-          </div>
 
-          <div className="profileContainer">
-            <Button className="btn btn-info" style={{ width: "100%" }} onClick={() => handleShow("jobTitle")}>현제직위명</Button>
-            <div className="profileEditor" style={{ display: show.jobTitle }}>
-              <textarea name="jobTitle" value={bio.jobTitle} placeholder={placeHolder.jobTitle} as="textarea" rows="8" onChange={(e) => handleChange(e, "jobTitle")} />
+            <div className="profileContainer">
+              <Button className="btn btn-info" style={{ width: "100%" }} onClick={() => handleShow("jobTitle")}>현제직위명</Button>
+              <div className="profileEditor" style={{ display: show.jobTitle }}>
+                <textarea name="jobTitle" value={bio.jobTitle} placeholder={placeHolder.jobTitle} as="textarea" rows="8" onChange={(e) => handleChange(e, "jobTitle")} />
+              </div>
             </div>
-          </div>
 
-          <div className="profileContainer">
-            <Button className="btn btn-info" style={{ width: "100%" }} onClick={() => handleShow("specialField")}>전문상담/코칭분야</Button>
-            <div className="profileEditor" style={{ display: show.specialField }}>
-              <textarea name="specialField" value={bio.specialField} placeholder={placeHolder.specialField} as="textarea" rows="8" onChange={(e) => handleChange(e, "specialField")} />
+            <div className="profileContainer">
+              <Button className="btn btn-info" style={{ width: "100%" }} onClick={() => handleShow("specialField")}>전문상담/코칭분야</Button>
+              <div className="profileEditor" style={{ display: show.specialField }}>
+                <textarea name="specialField" value={bio.specialField} placeholder={placeHolder.specialField} as="textarea" rows="8" onChange={(e) => handleChange(e, "specialField")} />
+              </div>
             </div>
-          </div>
 
-          <div className="profileContainer">
-            <Button className="btn btn-info" style={{ width: "100%" }} onClick={() => handleShow("certificate")}>전문 자격증</Button>
-            <div className="profileEditor" style={{ display: show.certificate }}>
-              <textarea name="certificate" value={bio.certificate} placeholder={placeHolder.certificate} as="textarea" rows="8" onChange={(e) => handleChange(e, "certificate")} />
+            <div className="profileContainer">
+              <Button className="btn btn-info" style={{ width: "100%" }} onClick={() => handleShow("certificate")}>전문 자격증</Button>
+              <div className="profileEditor" style={{ display: show.certificate }}>
+                <textarea name="certificate" value={bio.certificate} placeholder={placeHolder.certificate} as="textarea" rows="8" onChange={(e) => handleChange(e, "certificate")} />
+              </div>
             </div>
-          </div>
 
-          <div className="profileContainer">
-            <Button className="btn btn-info" style={{ width: "100%" }} onClick={() => handleShow("experience")}>상담/코칭 경력</Button>
-            <div className="profileEditor" style={{ display: show.experience }}>
-              <textarea name="experience" value={bio.experience} placeholder={placeHolder.experience} as="textarea" rows="8" onChange={(e) => handleChange(e, "experience")} />
+            <div className="profileContainer">
+              <Button className="btn btn-info" style={{ width: "100%" }} onClick={() => handleShow("experience")}>상담/코칭 경력</Button>
+              <div className="profileEditor" style={{ display: show.experience }}>
+                <textarea name="experience" value={bio.experience} placeholder={placeHolder.experience} as="textarea" rows="8" onChange={(e) => handleChange(e, "experience")} />
+              </div>
             </div>
-          </div>
 
-          <div className="profileContainer">
-            <Button className="btn btn-info" style={{ width: "100%" }} onClick={() => handleShow("degree")}>EDUCATIONAL DEGREE</Button>
-            <div className="profileEditor" style={{ display: show.degree }}>
-              <textarea name="degree" value={bio.degree} placeholder={placeHolder.degree} as="textarea" rows="8" onChange={(e) => handleChange(e, "degree")} />
+            <div className="profileContainer">
+              <Button className="btn btn-info" style={{ width: "100%" }} onClick={() => handleShow("degree")}>EDUCATIONAL DEGREE</Button>
+              <div className="profileEditor" style={{ display: show.degree }}>
+                <textarea name="degree" value={bio.degree} placeholder={placeHolder.degree} as="textarea" rows="8" onChange={(e) => handleChange(e, "degree")} />
+              </div>
             </div>
-          </div>
 
-          <div className="profileContainer">
-            <Button className="btn btn-info" style={{ width: "100%" }} onClick={() => handleShow("blog")}>BLOG</Button>
-            <div className="profileEditor" style={{ display: show.blog }}>
-              <input name="blog" type="url" pattern="^https?:\/\/((?!\s*$).+)" value={bio.blog} placeholder={placeHolder.blog} type="text" rows="8" onChange={(e) => handleChange(e, "blog")} />
+            <div className="profileContainer">
+              <Button className="btn btn-info" style={{ width: "100%" }} onClick={() => handleShow("blog")}>BLOG</Button>
+              <div className="profileEditor" style={{ display: show.blog }}>
+                <input name="blog" type="url" pattern="^https?:\/\/((?!\s*$).+)" value={bio.blog} placeholder={placeHolder.blog} type="text" rows="8" onChange={(e) => handleChange(e, "blog")} />
+              </div>
             </div>
-          </div>
 
-          <Button style={{ width: "100%", marginTop: "2em" }} disabled={buttonStatus} type="submit">PUBLISH</Button>
-        </form>
+            <Button style={{ width: "100%", marginTop: "2em" }} disabled={buttonStatus} type="submit">PUBLISH</Button>
+          </form>
+        </div>
       </div>
-    </div>
-  )
+    )
 }

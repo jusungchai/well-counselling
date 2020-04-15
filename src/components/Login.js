@@ -54,22 +54,27 @@ export default function Login(props) {
     }
   }
 
-  return isLogged ? <Redirect to='/' /> : (
-    <div className="main login container">
-      <div id="login-container">
-        <Form className="login form" onSubmit={(e) => handleSubmit(e)}>
-          <Form.Group className="login-form" controlId="exampleForm.ControlInput1">
-            <Form.Label>Email</Form.Label>
-            <Form.Control className="loginField" type="email" placeholder="name@example.com" required onChange={(e) => handleChange(e, "email")} />
+  if (isLogged === null)
+    return null
+  else if (isLogged)
+    return <Redirect to='/' />
+  else
+    return (
+      <div className="main login container">
+        <div id="login-container">
+          <Form className="login form" onSubmit={(e) => handleSubmit(e)}>
+            <Form.Group className="login-form" controlId="exampleForm.ControlInput1">
+              <Form.Label>Email</Form.Label>
+              <Form.Control className="loginField" type="email" placeholder="name@example.com" required onChange={(e) => handleChange(e, "email")} />
+            </Form.Group>
+            <Form.Group className="login-form" controlId="exampleForm.ControlInput1">
+              <Form.Label>Password</Form.Label>
+              <Form.Control className="loginField" type={pw} required onChange={(e) => handleChange(e, "password")} />
+              <input id="showPW" type="checkbox" onClick={() => showPW()} /> Show Password
           </Form.Group>
-          <Form.Group className="login-form" controlId="exampleForm.ControlInput1">
-            <Form.Label>Password</Form.Label>
-            <Form.Control className="loginField" type={pw} required onChange={(e) => handleChange(e, "password")} />
-            <input id="showPW" type="checkbox" onClick={() => showPW()} /> Show Password
-          </Form.Group>
-          <Button id="login-button" type="submit" disabled={field.disabled}>Login</Button>
-        </Form>
+            <Button id="login-button" type="submit" disabled={field.disabled}>Login</Button>
+          </Form>
+        </div>
       </div>
-    </div>
-  )
+    )
 }
