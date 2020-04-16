@@ -5,6 +5,7 @@ import '../styling/Register.css'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import InfoModal from './InfoModal'
 
 export default function Register(props) {
   const isLogged = useSelector(state => state.isLogged)
@@ -80,6 +81,12 @@ export default function Register(props) {
     }
   }
 
+  const [modalShow, setModalShow] = React.useState(false);
+  const modalInfo = {
+    terms: "TERMS and CONDITIONS MSG HERE\nasdf",
+    title: "Well Counselling Terms & Conditions"
+  }
+
   if (isLogged === null)
     return null
   else if (isLogged)
@@ -118,9 +125,18 @@ export default function Register(props) {
               <Form.Control type="password" required onChange={(e) => handleChange(e, "confirmPassword")} id="confirm_password" />
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlInput1">
-              <Form.Label className="registerLabel">Registration Key</Form.Label>
+              <Form.Label className="registerLabel">Registration Key (Provided by Admin)</Form.Label>
               <Form.Control type="password" required onChange={(e) => handleChange(e, "registrationKey")} />
             </Form.Group>
+            <div id="terms">
+              <input type="checkbox" required onInvalid={(e) => e.target.setCustomValidity("You must agree to terms and conditions to register")}/>
+              <label onClick={() => setModalShow(true)}><font color="red">I agree to the Terms and Conditions</font></label>
+            </div>            
+            <InfoModal
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+              data={modalInfo}
+            />
             <Button id="register-button" disabled={field.disabled} type="submit">Register</Button>
           </Form>
         </div>
