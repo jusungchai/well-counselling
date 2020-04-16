@@ -59,6 +59,10 @@ img {
   padding: 0.5em;
 }
 
+.home.message > p {
+  white-space: pre-wrap;
+}
+
 @media only screen and (max-width: 720px) {
   .home.inner.container {    
     flex-direction: column-reverse;    

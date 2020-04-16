@@ -2,11 +2,7 @@ import React from 'react'
 import '../styling/MessageContainer.css'
 
 export default function MessageContainer(props) {
-  const createParagraph = () => {
-    return props.data.message.map((message, id) =>
-      <p key={id}>{message}</p>
-    )
-  }
+  
   return (
     <div className="main home container">
       <div className="home title container">
@@ -14,7 +10,7 @@ export default function MessageContainer(props) {
       </div>
       <div className="home inner container">
         <div className="home message">
-          {createParagraph()}
+          <p>{props.data.message}</p>
         </div>
         {
           props.data.image ?
