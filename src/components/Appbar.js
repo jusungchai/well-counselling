@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
-import { login, logout } from '../actions'
+import { userLogin, adminLogin, logout } from '../actions'
 
 export default function Appbar(props) {
   const isLogged = useSelector(state => state.isLogged)
@@ -32,17 +32,36 @@ export default function Appbar(props) {
   useEffect(() => {
     axios.get('/auth', { withCredentials: true })
       .then(res => {
-        res.data === "in" ? dispatch(login()) : dispatch(logout())
+        if (res.data === "admin"){
+          dispatch(adminLogin())
+        } else if (res.data === "user"){
+          dispatch(userLogin())
+        } else {
+          dispatch(logout())
+        }
+        // res.data === "in" ? dispatch(adminLogin()) : dispatch(logout())
       })
   }, [isLogged])
 
   const dashBoard = () => {
-    if (isLogged) {
+    if (isLogged === "user") {
       return (
         <NavDropdown title="Counsellors" id="basic-nav-dropdown">
           <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item href="/setting">Setting</NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item onClick={() => handleLogout()}>Logout</NavDropdown.Item>
+        </NavDropdown>
+      )
+    } else if (isLogged === "admin") {
+      return (
+        <NavDropdown title="Counsellors" id="basic-nav-dropdown">
+          <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item href="/setting">Setting</NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item href="/dashboard">Dashboard</NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item onClick={() => handleLogout()}>Logout</NavDropdown.Item>
         </NavDropdown>

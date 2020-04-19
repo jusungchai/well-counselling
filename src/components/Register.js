@@ -89,7 +89,7 @@ export default function Register(props) {
 
   if (isLogged === null)
     return null
-  else if (isLogged)
+  else if (isLogged === "user" || isLogged === "admin")
     return <Redirect to='/' />
   else
     return (

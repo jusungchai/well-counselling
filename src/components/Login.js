@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 import '../styling/Login.css'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
-import { login } from '../actions'
+import { userLogin, adminLogin } from '../actions'
 import { Redirect } from 'react-router-dom'
 
 export default function Login(props) {
@@ -27,12 +27,15 @@ export default function Login(props) {
     updateField({ ...field, disabled: true })
     axios.post('/auth/login', field, { withCredentials: true })
       .then(res => {
-        if (res.data === "logged in") {
+        if (res.data === "user") {
           alert("Logged In")
-          dispatch(login())
+          dispatch(userLogin())
           props.history.push('/')
-        }
-        else if (res.data === "wrong pw") {
+        } else if (res.data === "admin") {
+          alert("Logged In")
+          dispatch(adminLogin())
+          props.history.push('/')
+        } else if (res.data === "wrong pw") {
           alert("Wrong Password")
           updateField({ ...field, disabled: false })
         } else if (res.data === "user not found") {
@@ -56,7 +59,7 @@ export default function Login(props) {
 
   if (isLogged === null)
     return null
-  else if (isLogged)
+  else if (isLogged === "user" || isLogged === "admin")
     return <Redirect to='/' />
   else
     return (
